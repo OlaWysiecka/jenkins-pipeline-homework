@@ -37,8 +37,8 @@ pipeline {
                         echo "Building ${env.APP_NAME}"
                         echo "Application version: ${env.APP_VERSION}"
 
-                        bat 'python --version'
-                        bat 'python app.py'
+                        sh 'python --version'
+                        sh 'python app.py'
 
                         echo "Build completed successfully."
                     } catch (Exception e) {
@@ -61,8 +61,8 @@ pipeline {
                     try {
                         echo "Running tests..."
 
-                        bat 'python -m pip install -r requirements.txt'
-                        bat 'python -m pytest -v'
+                        sh 'python -m pip install -r requirements.txt'
+                        sh 'python -m pytest -v'
 
                         echo "Tests completed successfully."
                     } catch (Exception e) {
@@ -88,8 +88,8 @@ pipeline {
                         echo "Version: ${env.APP_VERSION}"
                         echo "Environment: ${env.DEPLOY_ENVIRONMENT}"
 
-                        bat 'echo Deployment started'
-                        bat 'echo Deployment completed successfully'
+                        sh 'echo Deployment started'
+                        sh 'echo Deployment completed successfully'
 
                     } catch (Exception e) {
                         echo "Deployment failed: ${e.getMessage()}"
