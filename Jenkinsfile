@@ -59,19 +59,21 @@ pipeline {
             steps {
                 script {
                     try {
-                        echo "Running tests..."
+                        echo 'Running tests...'
 
-                        sh 'python3 -m pip install -r requirements.txt'
-                        sh 'python3 -m pytest -v'
+                        sh 'python3 -m venv .venv'
+                        sh '.venv/bin/pip install -r requirements.txt'
+                        sh '.venv/bin/pytest -v'
 
-                        echo "Tests completed successfully."
+                        echo 'Tests completed successfully.'
                     } catch (Exception e) {
                         echo "Tests failed: ${e.getMessage()}"
-                        error("Test stage failed.")
+                        error 'Test stage failed.'
                     }
                 }
             }
         }
+
 
         stage('Deploy') {
             when {
